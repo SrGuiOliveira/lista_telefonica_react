@@ -1,11 +1,16 @@
-import GlobalStyle from './styles'
+import List from './containers/List'
+import GlobalStyle, { Container } from './styles'
+import { Provider } from 'react-redux'
+import store from './store'
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
-      <h1>Olá</h1>
-    </>
+      <Container>
+        <List />
+      </Container>
+    </Provider>
   )
 }
 
