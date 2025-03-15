@@ -7,6 +7,8 @@ import { useState } from 'react'
 
 const Contact = () => {
   const { items } = useSelector((state: RootReducer) => state.contatos)
+  const { term } = useSelector((state: RootReducer) => state.filtro)
+
   const contatos = items
 
   const dispatch = useDispatch()
@@ -28,9 +30,18 @@ const Contact = () => {
     })
   }
 
+  const filterContacts = () => {
+    return contatos.filter(
+      (item) =>
+        item.nome.toLowerCase().includes(term.toLowerCase()) ||
+        item.telefone.toString().includes(term) || // Convert telefone to string
+        item.email.toLowerCase().includes(term.toLowerCase())
+    )
+  }
+
   return (
     <>
-      {contatos.map((contato) => {
+      {filterContacts().map((contato) => {
         const { id, nome, email, telefone } = contato
         return (
           <S.Card key={id}>
