@@ -1,4 +1,5 @@
-import { Header, Icon, Section, Title } from './styles'
+import { Header, Icon, SearchBar, Title } from './styles'
+import { Section } from '../../styles'
 import contacList from '../../icon/contact-list.png'
 import Contact from '../../components/Contact'
 
@@ -8,6 +9,7 @@ const List = () => {
       <Header>
         <Icon src={contacList}></Icon>
         <Title>Lista Telefônica</Title>
+        <SearchBar />
       </Header>
       <Section>
         <Contact />

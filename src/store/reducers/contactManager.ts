@@ -36,9 +36,34 @@ const tarefasSlice = createSlice({
       state.items = state.items.filter(
         (contato) => contato.id !== action.payload
       )
+    },
+    edit: (state, action: PayloadAction<Contact>) => {
+      const indexFromContact = state.items.findIndex(
+        (c) => c.id === action.payload.id
+      )
+
+      if (indexFromContact >= 0) {
+        state.items[indexFromContact] = action.payload
+      }
+    },
+    register: (state, action: PayloadAction<Omit<Contact, 'id'>>) => {
+      const contactAlreadyExist = state.items.find(
+        (contact) => contact.telefone === action.payload.telefone
+      )
+
+      if (contactAlreadyExist) {
+        alert('Este número já existe na sua agenda!')
+      } else {
+        const lastContact = state.items[state.items.length - 1]
+        const newContact = {
+          ...action.payload,
+          id: lastContact ? lastContact.id + 1 : 1
+        }
+        state.items.push(newContact)
+      }
     }
   }
 })
 
-export const { remove } = tarefasSlice.actions
+export const { remove, edit, register } = tarefasSlice.actions
 export default tarefasSlice.reducer

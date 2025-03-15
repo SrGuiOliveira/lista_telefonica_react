@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-export const Section = styled.section`
-  background: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  width: 1000px;
-  height: 60vh;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.315);
-  overflow-y: auto;
-`
 export const Header = styled.div`
   display: flex;
   align-items: center;
@@ -22,4 +13,8 @@ export const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   padding: 40px;
+`
+export const SearchBar = styled.input`
+  width: 100%;
+  padding: 4px;
 `

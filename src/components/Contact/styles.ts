@@ -9,26 +9,6 @@ export const Card = styled.div`
   border-radius: 8px;
   margin-bottom: 16px;
 `
-export const EditButton = styled.button`
-  background-color: orange;
-  padding: 8px;
-  border-radius: 2px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-`
-export const RemoveButton = styled.button`
-  background-color: red;
-  padding: 8px;
-  border-radius: 2px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-`
 export const Label = styled.label`
   font-weight: lighten;
   font-size: 12px;
