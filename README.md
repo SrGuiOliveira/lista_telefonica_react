@@ -12,6 +12,12 @@ Uma aplicação desenvolvida em **React** para gerenciar contatos telefônicos. 
 - Máscara de telefone implementada manualmente para formatação dinâmica.
 - **Interface totalmente responsiva**, adaptada para diferentes dispositivos (desktop, tablets e smartphones).
 
+## 🌐 Acesse o Projeto
+
+A aplicação está hospedada na Vercel. Você pode acessá-la através do seguinte link:
+
+👉 **[Lista Telefônica - Acesse Aqui](https://lista-telefonica-react-pi.vercel.app/)**
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **React**: Biblioteca JavaScript para construção de interfaces de usuário.
@@ -49,4 +55,4 @@ Expõe as configurações padrão do React, permitindo customizações avançada
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/SrGuiOliveira/lista_telefonica_react
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
