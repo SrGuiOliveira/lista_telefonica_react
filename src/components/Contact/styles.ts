@@ -18,4 +18,7 @@ export const Input = styled.input`
   border: none;
   font-size: 14px;
   font-weight: bold;
+  &::placeholder {
+    opacity: 0;
+  }
 `

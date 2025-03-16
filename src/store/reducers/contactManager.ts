@@ -48,11 +48,13 @@ const tarefasSlice = createSlice({
     },
     register: (state, action: PayloadAction<Omit<Contact, 'id'>>) => {
       const contactAlreadyExist = state.items.find(
-        (contact) => contact.telefone === action.payload.telefone
+        (contact: { telefone: any }) =>
+          contact.telefone === action.payload.telefone
       )
 
       if (contactAlreadyExist) {
-        alert('Este número já existe na sua agenda!')
+        alert('Este telefone já está registrado para outro contato.')
+        return
       } else {
         const lastContact = state.items[state.items.length - 1]
         const newContact = {

@@ -1,11 +1,15 @@
 import { FormEvent, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 import { register } from '../../store/reducers/contactManager'
 import { CardForm, LabelForm, InputForm } from './styles'
 import { SaveButton } from '../../styles'
+import { RootReducer } from '../../store'
+import { validateContact } from '../../utils/validators'
 
 const Form = () => {
+  const { items } = useSelector((state: RootReducer) => state.contatos)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -16,18 +20,21 @@ const Form = () => {
   const registerNewContact = (event: FormEvent) => {
     event.preventDefault()
 
-    if (nome.length < 2) {
-      alert('Insira um nome válido para o contato.')
-    } else {
-      dispatch(
-        register({
-          nome,
-          email,
-          telefone: Number(telefone)
-        })
-      )
-      navigate('/')
+    const validationError = validateContact(nome, telefone, items)
+
+    if (validationError) {
+      alert(validationError)
+      return
     }
+
+    dispatch(
+      register({
+        nome,
+        email,
+        telefone: Number(telefone)
+      })
+    )
+    navigate('/')
   }
 
   return (

@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import InputMask from 'react-input-mask'
+
 import * as S from './styles'
 import { Button, CancelRemoveButton, SaveButton } from '../../styles'
 import { RootReducer } from '../../store'
 import { remove, edit } from '../../store/reducers/contactManager'
-import { useState } from 'react'
+import { validateContact } from '../../utils/validators'
 
 const Contact = () => {
   const { items } = useSelector((state: RootReducer) => state.contatos)
@@ -30,13 +33,38 @@ const Contact = () => {
     })
   }
 
+  function EditContact() {
+    const validationError = validateContact(
+      contactData.nome,
+      contactData.telefone,
+      items
+    )
+
+    if (validationError) {
+      alert(validationError)
+      return
+    }
+
+    dispatch(
+      edit({
+        ...contactData,
+        telefone: Number(contactData.telefone.replace(/\D/g, ''))
+      })
+    )
+    setIsEditing(false)
+  }
+
   const filterContacts = () => {
     return contatos.filter(
       (item) =>
         item.nome.toLowerCase().includes(term.toLowerCase()) ||
-        item.telefone.toString().includes(term) || // Convert telefone to string
+        item.telefone.toString().includes(term) ||
         item.email.toLowerCase().includes(term.toLowerCase())
     )
+  }
+
+  const getPhoneMask = (telefone: string) => {
+    return telefone.length <= 10 ? '(99) 9999-9999' : '(99) 99999-9999'
   }
 
   return (
@@ -45,9 +73,9 @@ const Contact = () => {
         const { id, nome, email, telefone } = contato
         return (
           <S.Card key={id}>
-            <S.Label htmlFor={`nome-${id}`}>Nome: </S.Label>
+            <S.Label htmlFor={'nome'}>Nome: </S.Label>
             <S.Input
-              id={`nome-${id}`}
+              id={'nome'}
               type="text"
               value={
                 isEditing && contactData.id === id ? contactData.nome : nome
@@ -57,9 +85,9 @@ const Contact = () => {
               }
               disabled={!isEditing || contactData.id !== id}
             />
-            <S.Label htmlFor={`email-${id}`}>E-mail: </S.Label>
+            <S.Label htmlFor={'email'}>E-mail: </S.Label>
             <S.Input
-              id={`email-${id}`}
+              id={'email'}
               type="text"
               value={
                 isEditing && contactData.id === id ? contactData.email : email
@@ -69,41 +97,34 @@ const Contact = () => {
               }
               disabled={!isEditing || contactData.id !== id}
             />
-            <S.Label htmlFor={`telefone-${id}`}>Número: </S.Label>
-            <S.Input
-              id={`telefone-${id}`}
-              type="tel"
+            <S.Label htmlFor={'telefone'}>Número: </S.Label>
+            <InputMask
+              mask={getPhoneMask(
+                isEditing && contactData.id === id
+                  ? contactData.telefone
+                  : telefone.toString()
+              )}
               value={
                 isEditing && contactData.id === id
                   ? contactData.telefone
                   : telefone.toString()
               }
               onChange={(e) => {
-                const value = e.target.value
-                if (/^\d*$/.test(value)) {
-                  setContactData({
-                    ...contactData,
-                    telefone: value
-                  })
-                }
+                const value = e.target.value.replace(/\D/g, '')
+                setContactData({
+                  ...contactData,
+                  telefone: value
+                })
               }}
-              disabled={!isEditing || contactData.id !== id}
-            />
+              readOnly={!isEditing || contactData.id !== id}
+            >
+              {(inputProps) => (
+                <S.Input {...inputProps} type="tel" id="telefone" />
+              )}
+            </InputMask>
             {isEditing && contactData.id === id ? (
               <>
-                <SaveButton
-                  onClick={() => {
-                    dispatch(
-                      edit({
-                        ...contactData,
-                        telefone: Number(contactData.telefone)
-                      })
-                    )
-                    setIsEditing(false)
-                  }}
-                >
-                  Salvar
-                </SaveButton>
+                <SaveButton onClick={EditContact}>Salvar</SaveButton>
                 <CancelRemoveButton onClick={cancelEditing}>
                   Cancelar
                 </CancelRemoveButton>
