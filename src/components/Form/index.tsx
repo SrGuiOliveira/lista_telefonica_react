@@ -38,39 +38,41 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={registerNewContact}>
-      <CardForm>
-        <LabelForm>Nome: </LabelForm>
-        <InputForm
-          value={nome}
-          onChange={({ target }) => setNome(target.value)}
-          type="text"
-          placeholder="Nome do contato"
-        />
-        <LabelForm>E-mail: </LabelForm>
-        <InputForm
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-          type="email"
-          placeholder="e-mail do contato"
-        />
-        <LabelForm>Telefone: </LabelForm>
-        <InputForm
-          value={telefone}
-          onChange={({ target }) => {
-            const value = target.value
-            if (/^\d*$/.test(value)) {
-              setTelefone(value)
-            }
-          }}
-          inputMode="numeric"
-          type="tel"
-          placeholder="Número do contato"
-        />
+    <>
+      <form onSubmit={registerNewContact}>
+        <CardForm>
+          <LabelForm>Nome: </LabelForm>
+          <InputForm
+            value={nome}
+            onChange={({ target }) => setNome(target.value)}
+            type="text"
+            placeholder="Nome do contato"
+          />
+          <LabelForm>E-mail: </LabelForm>
+          <InputForm
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            type="email"
+            placeholder="e-mail do contato"
+          />
+          <LabelForm>Telefone: </LabelForm>
+          <InputForm
+            value={telefone}
+            onChange={({ target }) => {
+              const value = target.value
+              if (/^\d*$/.test(value)) {
+                setTelefone(value)
+              }
+            }}
+            inputMode="numeric"
+            type="tel"
+            placeholder="Número do contato"
+          />
 
-        <SaveButton type="submit">Cadastrar</SaveButton>
-      </CardForm>
-    </form>
+          <SaveButton type="submit">Cadastrar</SaveButton>
+        </CardForm>
+      </form>
+    </>
   )
 }
 

@@ -13,6 +13,10 @@ export const Title = styled.h1`
   font-size: 40px;
   text-align: center;
   padding: 30px;
+
+  @media (max-width: 767px) {
+    font-size: 30px;
+  }
 `
 export const SearchBar = styled.input`
   width: 100%;

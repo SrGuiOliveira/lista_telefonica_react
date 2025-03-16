@@ -52,6 +52,10 @@ export const Section = styled.section`
   height: 60vh;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.315);
   overflow-y: auto;
+
+  @media (max-width: 1023px) {
+    max-width: 80%;
+  }
 `
 
 export default GlobalStyle

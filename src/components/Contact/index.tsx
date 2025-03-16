@@ -73,82 +73,86 @@ const Contact = () => {
         const { id, nome, email, telefone } = contato
         return (
           <S.Card key={id}>
-            <S.Label htmlFor={'nome'}>Nome: </S.Label>
-            <S.Input
-              id={'nome'}
-              type="text"
-              value={
-                isEditing && contactData.id === id ? contactData.nome : nome
-              }
-              onChange={(e) =>
-                setContactData({ ...contactData, nome: e.target.value })
-              }
-              disabled={!isEditing || contactData.id !== id}
-            />
-            <S.Label htmlFor={'email'}>E-mail: </S.Label>
-            <S.Input
-              id={'email'}
-              type="text"
-              value={
-                isEditing && contactData.id === id ? contactData.email : email
-              }
-              onChange={(e) =>
-                setContactData({ ...contactData, email: e.target.value })
-              }
-              disabled={!isEditing || contactData.id !== id}
-            />
-            <S.Label htmlFor={'telefone'}>Número: </S.Label>
-            <InputMask
-              mask={getPhoneMask(
-                isEditing && contactData.id === id
-                  ? contactData.telefone
-                  : telefone.toString()
+            <S.ResponsiveDiv>
+              <div>
+                <S.Label htmlFor={'nome'}>Nome: </S.Label>
+                <S.Input
+                  id={'nome'}
+                  type="text"
+                  value={
+                    isEditing && contactData.id === id ? contactData.nome : nome
+                  }
+                  onChange={(e) =>
+                    setContactData({ ...contactData, nome: e.target.value })
+                  }
+                  disabled={!isEditing || contactData.id !== id}
+                />
+              </div>
+              <S.Label htmlFor={'email'}>E-mail: </S.Label>
+              <S.Input
+                id={'email'}
+                type="text"
+                value={
+                  isEditing && contactData.id === id ? contactData.email : email
+                }
+                onChange={(e) =>
+                  setContactData({ ...contactData, email: e.target.value })
+                }
+                disabled={!isEditing || contactData.id !== id}
+              />
+              <S.Label htmlFor={'telefone'}>Número: </S.Label>
+              <InputMask
+                mask={getPhoneMask(
+                  isEditing && contactData.id === id
+                    ? contactData.telefone
+                    : telefone.toString()
+                )}
+                value={
+                  isEditing && contactData.id === id
+                    ? contactData.telefone
+                    : telefone.toString()
+                }
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, '')
+                  setContactData({
+                    ...contactData,
+                    telefone: value
+                  })
+                }}
+                readOnly={!isEditing || contactData.id !== id}
+              >
+                {(inputProps) => (
+                  <S.Input {...inputProps} type="tel" id="telefone" />
+                )}
+              </InputMask>
+              {isEditing && contactData.id === id ? (
+                <>
+                  <SaveButton onClick={EditContact}>Salvar</SaveButton>
+                  <CancelRemoveButton onClick={cancelEditing}>
+                    Cancelar
+                  </CancelRemoveButton>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setIsEditing(true)
+                      setContactData({
+                        id,
+                        nome,
+                        email,
+                        telefone: telefone.toString()
+                      })
+                    }}
+                  >
+                    Editar
+                  </Button>
+                  <CancelRemoveButton onClick={() => dispatch(remove(id))}>
+                    Remover
+                  </CancelRemoveButton>
+                </>
               )}
-              value={
-                isEditing && contactData.id === id
-                  ? contactData.telefone
-                  : telefone.toString()
-              }
-              onChange={(e) => {
-                const value = e.target.value.replace(/\D/g, '')
-                setContactData({
-                  ...contactData,
-                  telefone: value
-                })
-              }}
-              readOnly={!isEditing || contactData.id !== id}
-            >
-              {(inputProps) => (
-                <S.Input {...inputProps} type="tel" id="telefone" />
-              )}
-            </InputMask>
-            {isEditing && contactData.id === id ? (
-              <>
-                <SaveButton onClick={EditContact}>Salvar</SaveButton>
-                <CancelRemoveButton onClick={cancelEditing}>
-                  Cancelar
-                </CancelRemoveButton>
-              </>
-            ) : (
-              <>
-                <Button
-                  onClick={() => {
-                    setIsEditing(true)
-                    setContactData({
-                      id,
-                      nome,
-                      email,
-                      telefone: telefone.toString()
-                    })
-                  }}
-                >
-                  Editar
-                </Button>
-                <CancelRemoveButton onClick={() => dispatch(remove(id))}>
-                  Remover
-                </CancelRemoveButton>
-              </>
-            )}
+            </S.ResponsiveDiv>
           </S.Card>
         )
       })}
