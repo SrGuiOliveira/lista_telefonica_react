@@ -41,22 +41,30 @@ const Form = () => {
     <>
       <form onSubmit={registerNewContact}>
         <CardForm>
-          <LabelForm>Nome: </LabelForm>
+          <LabelForm htmlFor="nome">Nome: </LabelForm>
           <InputForm
+            id="nome"
+            name="nome"
             value={nome}
             onChange={({ target }) => setNome(target.value)}
             type="text"
             placeholder="Nome do contato"
+            autoComplete="name"
           />
-          <LabelForm>E-mail: </LabelForm>
+          <LabelForm htmlFor="email">E-mail: </LabelForm>
           <InputForm
+            id="email"
+            name="email"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
             type="email"
             placeholder="e-mail do contato"
+            autoComplete="email"
           />
-          <LabelForm>Telefone: </LabelForm>
+          <LabelForm htmlFor="telefone">Telefone: </LabelForm>
           <InputForm
+            id="telefone"
+            name="telefone"
             value={telefone}
             onChange={({ target }) => {
               const value = target.value
@@ -67,6 +75,7 @@ const Form = () => {
             inputMode="numeric"
             type="tel"
             placeholder="Número do contato"
+            autoComplete="tel"
           />
 
           <SaveButton type="submit">Cadastrar</SaveButton>
