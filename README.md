@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# 📞 Lista Telefônica React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma aplicação desenvolvida em **React** para gerenciar contatos telefônicos. O projeto foi criado com foco em organização, funcionalidade e experiência do usuário.
 
-## Available Scripts
+## 🚀 Funcionalidades
 
-In the project directory, you can run:
+- Adicionar um novo contato com nome, e-mail e número de telefone.
+- Editar informações de contatos existentes.
+- Remover contatos da lista.
+- Pesquisar contatos na lista por nome, e-mail ou telefone.
+- Validação de dados para evitar duplicidade de contatos.
+- Máscara de telefone implementada manualmente para formatação dinâmica.
+- **Interface totalmente responsiva**, adaptada para diferentes dispositivos (desktop, tablets e smartphones).
+
+## 🛠️ Tecnologias Utilizadas
+
+- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript para tipagem estática.
+- **Redux Toolkit**: Gerenciamento de estado global da aplicação.
+- **React Router DOM**: Navegação entre as páginas.
+- **Styled Components**: Estilização com CSS-in-JS.
+- **ESLint e Prettier**: Ferramentas para linting e formatação de código.
+- **Jest e Testing Library**: Frameworks para testes de unidade e de integração.
+
+## 📦 Dependências Principais
+
+- `@reduxjs/toolkit` para gerenciamento de estado.
+- `react-router-dom` para navegação entre as páginas.
+- `styled-components` para estilização.
+- `typescript` para suporte a tipagem estática.
+
+## 🛠️ Scripts Disponíveis
+
+No diretório do projeto, você pode executar:
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Inicia o servidor de desenvolvimento para que você possa visualizar o projeto no navegador.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Executa os testes configurados com o **Jest** e a **Testing Library**.
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Compila a aplicação para produção no diretório `build`, otimizando o código para melhor performance.
 
 ### `npm run eject`
+Expõe as configurações padrão do React, permitindo customizações avançadas.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 📝 Como Executar o Projeto Localmente
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/SrGuiOliveira/lista_telefonica_react
